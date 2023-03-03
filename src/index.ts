@@ -2,7 +2,7 @@ import express from "express";
 import mysql from "mysql";
 import * as dotenv from "dotenv";
 import { json } from "body-parser";
-import { setsRouter } from "./routes/sets";
+import { setsRouter } from "./routes/sets-route";
 
 dotenv.config();
 
@@ -18,7 +18,12 @@ const connection = mysql.createConnection({
   database: "pogobuff",
 });
 
-connection.connect();
+try {
+  connection.connect();
+  console.log("Connected to MYSQL");
+} catch (error) {
+  console.error("Error connecting to MYSQL", error);
+}
 
 // connection.end();
 
