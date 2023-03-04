@@ -3,12 +3,20 @@ import mysql from "mysql";
 import * as dotenv from "dotenv";
 import { json } from "body-parser";
 import { setsRouter } from "./routes/sets-route";
+import { createLog } from "./middleware/log";
 
 dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 app.use(json());
+app.use(createLog);
 app.use(setsRouter);
 
 const connection = mysql.createConnection({
