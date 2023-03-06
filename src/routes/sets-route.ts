@@ -14,10 +14,11 @@ router.get("/api/sets", async (req: Request, res: Response) => {
 
 router.post("/api/sets", async (req: Request, res: Response) => {
   try {
-    eloData.elo = req.body;
+    eloData.elo = req.body.elo;
+    console.log(eloData, "elo saved");
     res.status(200).send("elo saved");
   } catch (error) {
-    res.send({ message: "Failed to fetch sets data", error: error });
+    res.send({ message: "Failed to create sets data", error: error });
   }
 });
 
