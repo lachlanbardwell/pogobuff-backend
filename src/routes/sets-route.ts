@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { saveEloData } from "../helpers/post-elo";
 
 const router = express.Router();
 
@@ -14,7 +15,8 @@ router.get("/api/sets", async (req: Request, res: Response) => {
 
 router.post("/api/sets", async (req: Request, res: Response) => {
   try {
-    eloData.elo = req.body.elo;
+    // eloData.elo = req.body.elo;
+    saveEloData(req.body.elo);
     console.log(eloData, "elo saved");
     res.status(200).send("elo saved");
   } catch (error) {

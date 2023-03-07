@@ -7,7 +7,8 @@ const pool = mysql.createPool({
   password: "your_password",
   database: "dashboard_db",
 });
-const saveEloData = async (eloData: IElo) => {
+
+export const saveEloData = async (eloData: IElo) => {
   try {
     pool.getConnection((error, connection) => {
       if (error) {
