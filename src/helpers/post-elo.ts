@@ -6,15 +6,22 @@ export const saveEloData = async (eloData: IElo) => {
     const { playername, current } = eloData;
     const query = `
         INSERT INTO elo_data (playername, current)
-        VALUES (?, ?)
+        VALUES (:playername, :current)
       `;
-    connection.query(query, (error, result) => {
-      if (error) {
-        console.error(`Error saving elo data: ${error.message}`);
-      } else {
-        console.log(`Inserted ${result} rows`);
+    connection.query(
+      query,
+      {
+        playername: playername,
+        current: current,
+      },
+      (error, result) => {
+        if (error) {
+          console.error(`Error saving elo data: ${error.message}`);
+        } else {
+          console.log(`Inserted ${result} rows`);
+        }
       }
-    });
+    );
   } catch (error) {
     console.error(`Error saving elo data: ${error}`);
   }
