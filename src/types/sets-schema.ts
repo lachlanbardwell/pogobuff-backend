@@ -5,6 +5,7 @@ export interface ISet {
 }
 
 export interface IElo {
+  playername: string;
   starting: number;
   current: number;
   change: number;
